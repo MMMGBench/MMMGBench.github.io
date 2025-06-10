@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="MMMG: A Massive, Multidisciplinary, Multi-Tier Generation Benchmark for Text-to-Image Reasoning">
+  <meta name="keywords" content="MMMG, Text-to-Image Reasoning, Benchmark">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MMMG: A Massive, Multidisciplinary, Multi-Tier Generation Benchmark for Text-to-Image Reasoning</title>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/style.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/leaderboard.css"></script>
+
+  <script type="text/javascript" src="static/js/sort-table.js" defer></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script> </head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+
+          <h1 class="title is-2 publication-title">
+            MMMG: A Massive, Multidisciplinary, Multi-Tier<br>Generation Benchmark for Text-to-Image Reasoning
+          </h1>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block">Yuxuan Luo<sup>†</sup>,</span>
+            <span class="author-block">Yuhui Yuan,</span>
+            <span class="author-block">Junwen Chen<sup>†</sup>,</span>
+            <span class="author-block">Haonan Cai,</span>
+            <span class="author-block">Ziyi Yue,</span>
+            <span class="author-block">Yuwei Yang<sup>†</sup>,</span>
+            <span class="author-block">Fatima Zohra Daha,</span>
+            <span class="author-block">Ji Li,</span>
+            <span class="author-block">Zhouhui Lian</span>
+          </div>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block">Microsoft Research Asia, Peking University</span><br>
+            <span class="author-block"><sup>†</sup>Research interns at Microsoft Research Asia</span>
+          </div>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/YOUR_ARXIV_ID_HERE" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/MMMGBench/MMMG" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><p style="font-size:18px">🤗</p></span>
+                  <span>Dataset</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://github.com/MMMGBench/MMMG/" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container" style="margin-top: -150px; margin-bottom: -100px;">
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <div class="content has-text-centered">
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/imgs/teaser.png" alt="Teaser PNG" width="100%" height="auto" style="border: none;">
+              <p class="caption">We propose MMMG: a Massive Multi-Discipline Multi-Tier Knowledge-Image Generation Benchmark. It consists of 10 disciplines and 6 educational levels, challenging models to demonstrate visual reasoning capabilities from concise text prompts.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-centered">
+          <img src="static/imgs/teaser.png" alt="Teaser PNG" width="100%" height="auto" style="border: none;">
+          <p class="caption">Figure 3: We propose MMMG: a Massive Multi-Discipline Multi-Tier Knowledge-Image Generation Benchmark. It consists of 10 disciplines and 6 educational levels, challenging models to demonstrate visual reasoning capabilities from concise text prompts.</p>
+        </div>
+      </div>
+      </div>
+    </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            In this paper, we introduce <strong>knowledge image generation</strong> as a new task, alongside the <strong>M</strong>assive <strong>M</strong>ulti-Discipline <strong>M</strong>ulti-Tier Knowledge-Image <strong>G</strong>eneration Benchmark (<strong>MMMG</strong>) to probe the reasoning capability of image generation models. Knowledge images have been central to human civilization and to the mechanisms of human learning a fact underscored by dual-coding theory and the picture-superiority effect. Generating such images is challenging, demanding multimodal reasoning that fuses world knowledge with pixel-level grounding into clear explanatory visuals. To enable comprehensive evaluation, <strong>MMMG</strong> offers 4,456 expert-validated (knowledge) image-prompt pairs spanning <strong>10 disciplines</strong>, <strong>6 educational levels</strong>, and diverse knowledge formats such as charts, diagrams, and mind maps. To eliminate confounding complexity during evaluation, we adopt a unified Knowledge Graph (KG) representation. Each KG explicitly delineates a target image's core entities and their dependencies. We further introduce <strong>MMMG-Score</strong> to evaluate generated knowledge images. This metric combines knowledge fidelity, measured by graph-edit distance between KGs, with visual clarity assessment. Comprehensive evaluations of 16 state-to-image generation models expose serious reasoning deficits-low entity fidelity, weak relations, and clutter-with GPT-4o achieving an MMMG-Score of only 50.20, underscoring the benchmark's difficulty. To spur further progress, we release FLUX-Reason (MMMG-Score of 34.45), an effective and open baseline that combines a reasoning LLM with diffusion models and is trained on 16,000 curated knowledge image-prompt pairs.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</div>
+</section>
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Leaderboard on MMMG 🏆</h2>
+        <div class="content has-text-centered">
+          <p>
+            Below is the leaderboard for <strong>MMMG-Score</strong> (×100) across prevalent image generation models.
+          </p>
+          <div class="table-container m-2"> 
+            <table class="table is-striped is-hoverable is-fullwidth">
+              <thead>
+                <tr>
+                  <th><b>Model</b></th>
+                  <th><b>Resolution</b></th>
+                  <th><b>Type</b></th>
+                  <th><b>Preschool</b></th>
+                  <th><b>Primary</b></th>
+                  <th><b>Secondary</b></th>
+                  <th><b>High</b></th>
+                  <th><b>Undergrad</b></th>
+                  <th><b>PhD</b></th>
+                  <th><b>Avg</b></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>GPT-4o</td>
+                  <td>1024</td>
+                  <td>MM</td>
+                  <td><b>64.78</b></td>
+                  <td><b>51.94</b></td>
+                  <td><b>53.04</b></td>
+                  <td><b>51.29</b></td>
+                  <td><b>41.52</b></td>
+                  <td><b>38.60</b></td>
+                  <td><b>50.20</b></td>
+                </tr>
+                <tr>
+                  <td>FLUX-Reason (R1)</td>
+                  <td>1024</td>
+                  <td>DM</td>
+                  <td>49.10</td>
+                  <td>39.39</td>
+                  <td>37.00</td>
+                  <td>33.65</td>
+                  <td>24.96</td>
+                  <td>22.57</td>
+                  <td>34.45</td>
+                </tr>
+                <tr>
+                  <td>FLUX-Reason (R1-7B)</td>
+                  <td>1024</td>
+                  <td>DM</td>
+                  <td>44.93</td>
+                  <td>34.41</td>
+                  <td>34.19</td>
+                  <td>28.70</td>
+                  <td>23.36</td>
+                  <td>21.99</td>
+                  <td>31.26</td>
+                </tr>
+                <tr>
+                  <td>HiDream-I1-Full</td>
+                  <td>1024</td>
+                  <td>DM</td>
+                  <td>42.86</td>
+                  <td>31.77</td>
+                  <td>30.26</td>
+                  <td>23.39</td>
+                  <td>19.88</td>
+                  <td>20.05</td>
+                  <td>28.04</td>
+                </tr>
+                <tr>
+                  <td>FLUX-pro</td>
+                  <td>1024</td>
+                  <td>DM</td>
+                  <td>42.27</td>
+                  <td>30.10</td>
+                  <td>29.15</td>
+                  <td>23.40</td>
+                  <td>19.32</td>
+                  <td>18.61</td>
+                  <td>27.14</td>
+                </tr>
+                <tr>
+                  <td>FLUX-Reason (o3)</td>
+                  <td>1024</td>
+                  <td>DM</td>
+                  <td>37.83</td>
+                  <td>29.72</td>
+                  <td>29.50</td>
+                  <td>23.62</td>
+                  <td>20.29</td>
+                  <td>18.73</td>
+                  <td>26.62</td>
+                </tr>
+                <tr>
+                  <td>Infinity</td>
+                  <td>1024</td>
+                  <td>AR</td>
+                  <td>25.87</td>
+                  <td>20.63</td>
+                  <td>21.86</td>
+                  <td>18.36</td>
+                  <td>14.23</td>
+                  <td>14.14</td>
+                  <td>19.18</td>
+                </tr>
+                <tr>
+                  <td>FLUX-dev</td>
+                  <td>1024</td>
+                  <td>DM</td>
+                  <td>29.80</td>
+                  <td>23.09</td>
+                  <td>20.99</td>
+                  <td>16.12</td>
+                  <td>12.47</td>
+                  <td>12.30</td>
+                  <td>19.13</td>
+                </tr>
+                <tr>
+                  <td>SEED-X</td>
+                  <td>1024</td>
+                  <td>MM</td>
+                  <td>33.41</td>
+                  <td>22.67</td>
+                  <td>19.49</td>
+                  <td>15.74</td>
+                  <td>8.88</td>
+                  <td>8.76</td>
+                  <td>18.16</td>
+                </tr>
+                <tr>
+                  <td>FLUX-dev (recaption)</td>
+                  <td>1024</td>
+                  <td>DM</td>
+                  <td>28.05</td>
+                  <td>20.29</td>
+                  <td>20.70</td>
+                  <td>15.74</td>
+                  <td>12.59</td>
+                  <td>11.20</td>
+                  <td>18.10</td>
+                </tr>
+                <tr>
+                  <td>SDXL-1.0-refiner</td>
+                  <td>1024</td>
+                  <td>DM</td>
+                  <td>24.55</td>
+                  <td>19.24</td>
+                  <td>18.59</td>
+                  <td>16.72</td>
+                  <td>9.68</td>
+                  <td>8.94</td>
+                  <td>16.29</td>
+                </tr>
+                <tr>
+                  <td>SDXL-1.0</td>
+                  <td>1024</td>
+                  <td>DM</td>
+                  <td>23.41</td>
+                  <td>19.12</td>
+                  <td>17.41</td>
+                  <td>16.26</td>
+                  <td>9.92</td>
+                  <td>9.29</td>
+                  <td>15.90</td>
+                </tr>
+                <tr>
+                  <td>BAGEL</td>
+                  <td>1024</td>
+                  <td>MM</td>
+                  <td>29.29</td>
+                  <td>19.42</td>
+                  <td>15.29</td>
+                  <td>11.11</td>
+                  <td>7.40</td>
+                  <td>7.60</td>
+                  <td>15.02</td>
+                </tr>
+                <tr>
+                  <td>CogView-4</td>
+                  <td>1024</td>
+                  <td>DM</td>
+                  <td>24.61</td>
+                  <td>16.02</td>
+                  <td>13.91</td>
+                  <td>10.02</td>
+                  <td>7.30</td>
+                  <td>6.73</td>
+                  <td>13.10</td>
+                </tr>
+                <tr>
+                  <td>Janus-pro-7B</td>
+                  <td>384</td>
+                  <td>AR</td>
+                  <td>29.50</td>
+                  <td>16.72</td>
+                  <td>12.73</td>
+                  <td>8.45</td>
+                  <td>5.57</td>
+                  <td>5.66</td>
+                  <td>13.10</td>
+                </tr>
+                <tr>
+                  <td>Ideogram</td>
+                  <td>1024</td>
+                  <td>DM</td>
+                  <td>20.39</td>
+                  <td>14.14</td>
+                  <td>12.90</td>
+                  <td>9.68</td>
+                  <td>8.41</td>
+                  <td>7.73</td>
+                  <td>12.21</td>
+                </tr>
+                <tr>
+                  <td>SimpleAR</td>
+                  <td>1024</td>
+                  <td>AR</td>
+                  <td>23.12</td>
+                  <td>11.97</td>
+                  <td>8.96</td>
+                  <td>6.44</td>
+                  <td>4.36</td>
+                  <td>3.99</td>
+                  <td>9.81</td>
+                </tr>
+                <tr>
+                  <td>JanusFlow-1.3B</td>
+                  <td>384</td>
+                  <td>AR</td>
+                  <td>24.11</td>
+                  <td>12.72</td>
+                  <td>8.81</td>
+                  <td>5.56</td>
+                  <td>3.57</td>
+                  <td>3.82</td>
+                  <td>9.77</td>
+                </tr>
+                <tr>
+                  <td>Emu-3</td>
+                  <td>720</td>
+                  <td>MM</td>
+                  <td>12.44</td>
+                  <td>7.12</td>
+                  <td>6.41</td>
+                  <td>5.28</td>
+                  <td>2.65</td>
+                  <td>2.74</td>
+                  <td>6.11</td>
+                </tr>
+                <tr>
+                  <td>LlamaGen</td>
+                  <td>512</td>
+                  <td>AR</td>
+                  <td>8.24</td>
+                  <td>3.77</td>
+                  <td>2.44</td>
+                  <td>1.44</td>
+                  <td>1.08</td>
+                  <td>1.14</td>
+                  <td>3.02</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--<section class="section">
+  <div class="container" style="margin-top: -150px; margin-bottom: -100px;">
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Overview 📊</h2>
+        <div class="content has-text-centered">
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <h3>MMMG-Score</h3>
+              <img src="static/imgs/eval_pipe.png" alt="MMMG-Score PNG" width="100%" height="auto" style="border: none;">
+              <p class="caption">Details of MMMG-Eval!</p>
+            </div>
+          </div>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <h3>Reason-FLUX</h3>
+              <img src="static/imgs/reason_flux.png" alt="Reason-FLUX" class="responsive-img">
+              <p class="caption">Details of Reason-FLUX training.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>-->
+
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-2">
+      <span class="benchmark" style="vertical-align: middle">Overview</span>
+    </h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <!-- Carousel Container -->
+        
+        <div id="overview-carousel" class="carousel results-carousel">
+
+          <!-- MMMG-Data Statistics -->
+          <div class="item">
+            <h3 class="title is-3 has-text-centered"><strong>MMMG</strong>-Statistics</h3>
+            <img src="static/imgs/statistics.png" alt="MMMG-Score" width="100%" height="auto" style="border: none;">
+            <h2 class="subtitle has-text-left">
+              We emphasize the inherent complexity of knowledge image generation by presenting detailed statistics on the number of entities and relationships in our dataset.<br><br>
+              Nearly 3,000 samples require visualizing knowledge graphs with 5 to 10 entities and a similar range of relationships.<br><br>
+              These distributions vary significantly across different disciplines and educational levels, highlighting the benchmark's diversity and the multifaceted nature of the generation task.
+            </h2>
+          </div>
+
+          <!-- MMMG-Score Slide -->
+          <div class="item">
+            <h3 class="title is-3 has-text-centered">MMMG-Score</h3>
+            <img src="static/imgs/eval_pipe.png" alt="MMMG-Score" width="100%" height="auto" style="border: none;">
+            <h2 class="subtitle has-text-left">
+              <strong>MMMG-Score</strong> is a novel and comprehensive metric designed for evaluating knowledge image generation. It consists of two components:<br><br>
+              <strong>Knowledge Fidelity Score:</strong> a normalized graph edit distance that measures the structural alignment between predicted and ground-truth knowledge graphs (KGs).<br><br>
+              <strong>Readability Score:</strong> a segmentation-based metric that rewards coherent visual regions and penalizes excessive fragmentation, promoting clarity in the generated content.
+            </h2>
+          </div>
+
+          <!-- Reason-FLUX Slide -->
+          <div class="item">
+            <h3 class="title is-3 has-text-centered">Reason-FLUX</h3>
+            <img src="static/imgs/reason_flux.png" alt="Reason-FLUX" width="100%" height="auto" style="border: none;">
+            <h2 class="subtitle has-text-left">
+              <strong>Reason-FLUX</strong> is designed to enhance reasoning capabilities in knowledge image generation by integrating a large language model (LLM) with a diffusion-based generator.<br><br>
+              Using GPT-4o, we construct a dataset of 16,000 training samples, each comprising a prompt, image, and structured knowledge graph (KG). The reasoning LLM generates chain-of-thought (CoT) traces based on the KG, guiding the image generation process with step-by-step semantic reasoning.<br><br>
+              The diffusion model is trained to align with these CoT traces, enabling the production of images that are not only visually consistent but also semantically faithful to the underlying knowledge structure.
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    bulmaCarousel.attach('#overview-carousel', {
+      slidesToScroll: 1,
+      slidesToShow: 1,
+      loop: true,
+      navigation: true,
+      pagination: true,
+      autoplay: true,
+      autoplaySpeed: 10000 // Adjust the speed of autoplay
+    });
+  });
+</script>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-2">
+      <span class="benchmark" style="vertical-align: middle">Results 📈</span>
+    </h1>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <!-- Carousel Container -->
+        
+        <div id="result-carousel" class="carousel results-carousel">
+
+          <div class="item">
+            <h3 class="title is-3 has-text-centered">By Discipline</h3>
+            <img src="static/imgs/by_discipline.png" alt="MMMG-Score" width="100%" height="auto" style="border: none;">
+            <h2 class="subtitle has-text-left">
+              Model performance varies significantly across disciplines, reflecting domain-specific visual reasoning challenges.<br><br>
+              Simpler domains like Geography and Literature benefit from descriptive visuals aligned with pretraining data, while fields like History and Sociology demand abstract reasoning with unfamiliar structures. Despite textual abstraction, Mathematics and Engineering perform well, aided by their structured, schematic visuals.<br><br>These results reveal semantic-visual gaps beyond the scope of text-only benchmarks.
+            </h2>
+          </div>
+
+          <div class="item">
+            <h3 class="title is-3 has-text-centered">Readability Statistics</h3>
+            <img src="static/imgs/read_stat.png" alt="MMMG-Score" width="100%" height="auto" style="border: none;">
+            <h2 class="subtitle has-text-left">
+              Visual clutters can be quantified by excessive fragmentation, which lead to poor readability and make knowledge fidelity score prone to overestimation. Thus a combination of readability and knowledge fidelity improves the evaluation robustness.
+            </h2>
+          </div>
+          
+          <div class="item">
+            <h3 class="title is-3 has-text-centered">Human Alignment and Metric Comparison</h3>
+            <img src="static/imgs/pearson.png" alt="MMMG-Score" width="100%" height="auto" style="border: none;">
+            <h2 class="subtitle has-text-left">
+              We benchmarked four evaluation metrics against expert annotations to assess alignment with human judgment. The proposed <strong>MMMG-Score</strong> reveals the strongest correlation ($r=0.876$), outperforming both LLM-based (WISE) and visual-only (FID, AES-2.5) metrics.<br><br>
+              These results underscore the advantage of graph-based evaluation for structured knowledge images, capturing both semantic accuracy and visual clarity.
+            </h2>
+          </div>
+
+          <div class="item">
+            <h3 class="title is-3 has-text-centered">Error Analysis</h3>
+            <img src="static/imgs/error_analysis.png" alt="MMMG-Score" width="100%" height="auto" style="border: none;">
+            <h2 class="subtitle has-text-left">
+              We categorize failures into: <strong>Readability</strong>, <strong>Entity Representation</strong> and <strong>Dependency Structure</strong>. Top models achieve high clarity but struggle with abstract dependencies. With model capability drop, more entity omissions and ambiguous representations occur, leading to factual inaccuracies.
+            </h2>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    bulmaCarousel.attach('#result-carousel', {
+      slidesToScroll: 1,
+      slidesToShow: 1,
+      loop: true,
+      navigation: true,
+      pagination: true,
+      autoplay: true,
+      autoplaySpeed: 10000 // Adjust the speed of autoplay
+    });
+  });
+</script>
+
+
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Visualization Examples 🖼️</h2>
+        <div id="pdf-carousel" class="carousel results-carousel">
+          <div class="item">
+            <img src="static/imgs/Biology.png" alt="Biology Visualization" width="100%" height="auto" style="border: none;">
+            <h2 class="subtitle has-text-centered">
+              Biology Visualization Example
+            </h2>
+          </div>
+          <div class="item">
+            <img src="static/imgs/Chemistry.png" alt="Chemistry Visualization" width="100%" height="auto" style="border: none;">
+            <h2 class="subtitle has-text-centered">
+              Chemistry Visualization Example
+            </h2>
+          </div>
+          <div class="item">
+            <img src="static/imgs/Engineering.png" alt="Engineering Visualization" width="100%" height="auto" style="border: none;">
+            <h2 class="subtitle has-text-centered">
+              Engineering Visualization Example
+            </h2>
+          </div>
+          <div class="item">
+            <img src="static/imgs/Math.png" alt="Math Visualization" width="100%" height="auto" style="border: none;">
+            <h2 class="subtitle has-text-centered">
+              Math Visualization Example
+            </h2>
+          </div>
+          <div class="item">
+            <img src="static/imgs/Economics.png" alt="Economics Visualization" width="100%" height="auto" style="border: none;">
+            <h2 class="subtitle has-text-centered">
+              Economics Visualization Example
+            </h2>
+          </div>
+          <div class="item">
+            <img src="static/imgs/Geography.png" alt="Geography Visualization" width="100%" height="auto" style="border: none;">
+            <h2 class="subtitle has-text-centered">
+              Geography Visualization Example
+            </h2>
+          </div>
+          <div class="item">
+            <img src="static/imgs/Sociology.png" alt="Sociology Visualization" width="100%" height="auto" style="border: none;">
+            <h2 class="subtitle has-text-centered">
+              Sociology Visualization Example
+            </h2>
+          </div>
+          <div class="item">
+            <img src="static/imgs/History.png" alt="History Visualization" width="100%" height="auto" style="border: none;">
+            <h2 class="subtitle has-text-centered">
+              History Visualization Example
+            </h2>
+          </div>
+          <div class="item">
+            <img src="static/imgs/Literature.png" alt="Literature Visualization" width="100%" height="auto" style="border: none;">
+            <h2 class="subtitle has-text-centered">
+              Literature Visualization Example
+            </h2>
+          </div>
+          <div class="item">
+            <img src="static/imgs/Philosophy.png" alt="Philosophy Visualization" width="100%" height="auto" style="border: none;">
+            <h2 class="subtitle has-text-centered">
+              Philosophy Visualization Example
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 has-text-centered">BibTeX 📚</h2>
+    <pre><code>@article{anonymous2025mmmg,
+  title={MMMG: A Massive, Multidisciplinary, Multi-Tier Generation Benchmark for Text-to-Image Reasoning},
+  author={Anonymous Author(s)},
+  year={2025},
+  note={Under review at NeurIPS 2025}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This page was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a>, licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Bulma Carousel for the image carousel
+    bulmaCarousel.attach('#pdf-carousel', {
+      slidesToScroll: 1,
+      slidesToShow: 1,
+      loop: true, // Allows continuous looping of slides
+      navigation: true, // Shows previous/next arrows
+      pagination: true, // Shows dots for pagination
+      autoplay: true,
+      autoplaySpeed: 5000 // Adjust the speed of autoplay
+      // You can add more options here, e.g., autoplay: true, autoplaySpeed: 3000
+    });
+  });
+</script>
+
+</body>
+</html>
