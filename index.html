@@ -135,7 +135,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            In this paper, we introduce <strong>knowledge image generation</strong> as a new task, alongside the <strong>M</strong>assive <strong>M</strong>ulti-Discipline <strong>M</strong>ulti-Tier Knowledge-Image <strong>G</strong>eneration Benchmark (<strong>MMMG</strong>) to probe the reasoning capability of image generation models. Knowledge images have been central to human civilization and to the mechanisms of human learning a fact underscored by dual-coding theory and the picture-superiority effect. Generating such images is challenging, demanding multimodal reasoning that fuses world knowledge with pixel-level grounding into clear explanatory visuals. To enable comprehensive evaluation, <strong>MMMG</strong> offers 4,456 expert-validated (knowledge) image-prompt pairs spanning <strong>10 disciplines</strong>, <strong>6 educational levels</strong>, and diverse knowledge formats such as charts, diagrams, and mind maps. To eliminate confounding complexity during evaluation, we adopt a unified Knowledge Graph (KG) representation. Each KG explicitly delineates a target image's core entities and their dependencies. We further introduce <strong>MMMG-Score</strong> to evaluate generated knowledge images. This metric combines knowledge fidelity, measured by graph-edit distance between KGs, with visual clarity assessment. Comprehensive evaluations of 16 state-to-image generation models expose serious reasoning deficits-low entity fidelity, weak relations, and clutter-with GPT-4o achieving an MMMG-Score of only 50.20, underscoring the benchmark's difficulty. To spur further progress, we release FLUX-Reason (MMMG-Score of 34.45), an effective and open baseline that combines a reasoning LLM with diffusion models and is trained on 16,000 curated knowledge image-prompt pairs.
+            In this paper, we introduce <strong>knowledge image generation</strong> as a new task, alongside the <strong>M</strong>assive <strong>M</strong>ulti-Discipline <strong>M</strong>ulti-Tier Knowledge-Image <strong>G</strong>eneration Benchmark (<strong>MMMG</strong>) to probe the reasoning capability of image generation models. Knowledge images have been central to human civilization and to the mechanisms of human learning a fact underscored by dual-coding theory and the picture-superiority effect. Generating such images is challenging, demanding multimodal reasoning that fuses world knowledge with pixel-level grounding into clear explanatory visuals. To enable comprehensive evaluation, <strong>MMMG</strong> offers 4,456 expert-validated (knowledge) image-prompt pairs spanning <strong>10 disciplines</strong>, <strong>6 educational levels</strong>, and diverse knowledge formats such as charts, diagrams, and mind maps. To eliminate confounding complexity during evaluation, we adopt a unified Knowledge Graph (KG) representation. Each KG explicitly delineates a target image's core entities and their dependencies. We further introduce <strong>MMMG-Score</strong>. This metric combines knowledge fidelity, measured by graph-edit distance between KGs, with visual clarity assessment. Comprehensive evaluations of 16 state-to-image generation models expose serious reasoning deficits-low entity fidelity, weak relations, and clutter-with GPT-4o achieving an MMMG-Score of only 50.20, underscoring the benchmark's difficulty. To spur further progress, we release FLUX-Reason (MMMG-Score of 34.45), an effective and open baseline that combines a reasoning LLM with diffusion models and is trained on 16,000 curated knowledge image-prompt pairs.
           </p>
         </div>
       </div>
@@ -233,7 +233,7 @@
                   <td>28.04</td>
                 </tr>
                 <tr>
-                  <td>FLUX-pro</td>
+                  <td>FLUX.1-[pro]</td>
                   <td>1024</td>
                   <td>DM</td>
                   <td>42.27</td>
@@ -269,7 +269,7 @@
                   <td>19.18</td>
                 </tr>
                 <tr>
-                  <td>FLUX-dev</td>
+                  <td>FLUX.1-[dev]</td>
                   <td>1024</td>
                   <td>DM</td>
                   <td>29.80</td>
@@ -293,7 +293,7 @@
                   <td>18.16</td>
                 </tr>
                 <tr>
-                  <td>FLUX-dev (recaption)</td>
+                  <td>FLUX.1-[dev] (recaption)</td>
                   <td>1024</td>
                   <td>DM</td>
                   <td>28.05</td>
