@@ -448,7 +448,7 @@
     let activeAsc = true;
 
     headers.forEach((th, idx) => {
-      th.dataset.base = th.textContent.trim(); // 保存原始标题文字
+      th.dataset.base = th.textContent.trim(); // 保存原始列名
 
       th.addEventListener("click", function () {
         const table = th.closest("table");
@@ -459,14 +459,16 @@
         // 排序
         rows.sort(comparer(idx, asc)).forEach(tr => tbody.appendChild(tr));
 
-        // 清空所有表头
-        headers.forEach(header => header.innerHTML = "");
+        // 更新表头：重置所有表头为原始列名
+        headers.forEach(header => {
+          header.innerHTML = header.dataset.base;
+        });
 
-        // 只保留当前点击列的文字 + 箭头
+        // 当前列添加箭头
         const arrow = asc ? " ↑" : " ↓";
         th.innerHTML = th.dataset.base + arrow;
 
-        // 更新状态
+        // 记录状态
         activeIndex = idx;
         activeAsc = asc;
       });
