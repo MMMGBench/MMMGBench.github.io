@@ -433,6 +433,8 @@
   </div>
 </section>
 
+
+<!-- 📌 排序功能 + 箭头更新 -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
@@ -443,13 +445,28 @@
           : v1.toString().localeCompare(v2)
       )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
 
-    document.querySelectorAll("#sortable-table th").forEach(th =>
+    const headers = document.querySelectorAll("#sortable-table th");
+    let activeIndex = -1;
+    let activeAsc = true;
+
+    headers.forEach((th, idx) =>
       th.addEventListener("click", function () {
         const table = th.closest("table");
         const tbody = table.querySelector("tbody");
-        Array.from(tbody.querySelectorAll("tr"))
-          .sort(comparer(Array.from(th.parentNode.children).indexOf(th), (this.asc = !this.asc)))
-          .forEach(tr => tbody.appendChild(tr));
+        const rows = Array.from(tbody.querySelectorAll("tr"));
+        const asc = (activeIndex === idx) ? !activeAsc : true;
+
+        rows.sort(comparer(idx, asc)).forEach(tr => tbody.appendChild(tr));
+
+        headers.forEach((header, i) => {
+          header.innerHTML = header.textContent.trim(); // 清除箭头
+          if (i === idx) {
+            header.innerHTML += asc ? " ↑" : " ↓";
+          }
+        });
+
+        activeIndex = idx;
+        activeAsc = asc;
       })
     );
   });
