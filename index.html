@@ -167,20 +167,20 @@
           <p>
             Below is the leaderboard for <strong>MMMG-Score</strong> (×100) across prevalent image generation models.
           </p>
-          <div class="table-container m-2"> 
-            <table class="table is-striped is-hoverable is-fullwidth">
+          <div class="table-container m-2">
+            <table class="table is-striped is-hoverable is-fullwidth" id="sortable-table">
               <thead>
                 <tr>
-                  <th><b>Model</b></th>
-                  <th><b>Resolution</b></th>
-                  <th><b>Type</b></th>
-                  <th><b>Preschool</b></th>
-                  <th><b>Primary</b></th>
-                  <th><b>Secondary</b></th>
-                  <th><b>High</b></th>
-                  <th><b>Undergrad</b></th>
-                  <th><b>PhD</b></th>
-                  <th><b>Avg</b></th>
+                  <th style="cursor:pointer">Model</th>
+                  <th style="cursor:pointer">Resolution</th>
+                  <th style="cursor:pointer">Type</th>
+                  <th style="cursor:pointer">Preschool</th>
+                  <th style="cursor:pointer">Primary</th>
+                  <th style="cursor:pointer">Secondary</th>
+                  <th style="cursor:pointer">High</th>
+                  <th style="cursor:pointer">Undergrad</th>
+                  <th style="cursor:pointer">PhD</th>
+                  <th style="cursor:pointer">Avg</th>
                 </tr>
               </thead>
               <tbody>
@@ -433,6 +433,27 @@
   </div>
 </section>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+    const comparer = (idx, asc) => (a, b) =>
+      ((v1, v2) =>
+        v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2)
+          ? parseFloat(v1) - parseFloat(v2)
+          : v1.toString().localeCompare(v2)
+      )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+
+    document.querySelectorAll("#sortable-table th").forEach(th =>
+      th.addEventListener("click", function () {
+        const table = th.closest("table");
+        const tbody = table.querySelector("tbody");
+        Array.from(tbody.querySelectorAll("tr"))
+          .sort(comparer(Array.from(th.parentNode.children).indexOf(th), (this.asc = !this.asc)))
+          .forEach(tr => tbody.appendChild(tr));
+      })
+    );
+  });
+</script>
 
 <!--<section class="section">
   <div class="container" style="margin-top: -150px; margin-bottom: -100px;">
