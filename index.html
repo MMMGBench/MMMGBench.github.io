@@ -433,8 +433,6 @@
   </div>
 </section>
 
-
-<!-- 📌 排序功能 + 箭头更新 -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
@@ -449,28 +447,33 @@
     let activeIndex = -1;
     let activeAsc = true;
 
-    headers.forEach((th, idx) =>
+    headers.forEach((th, idx) => {
+      th.dataset.base = th.textContent.trim(); // 保存原始标题文字
+
       th.addEventListener("click", function () {
         const table = th.closest("table");
         const tbody = table.querySelector("tbody");
         const rows = Array.from(tbody.querySelectorAll("tr"));
         const asc = (activeIndex === idx) ? !activeAsc : true;
 
+        // 排序
         rows.sort(comparer(idx, asc)).forEach(tr => tbody.appendChild(tr));
 
-        headers.forEach((header, i) => {
-          header.innerHTML = header.textContent.trim(); // 清除箭头
-          if (i === idx) {
-            header.innerHTML += asc ? " ↑" : " ↓";
-          }
-        });
+        // 清空所有表头
+        headers.forEach(header => header.innerHTML = "");
 
+        // 只保留当前点击列的文字 + 箭头
+        const arrow = asc ? " ↑" : " ↓";
+        th.innerHTML = th.dataset.base + arrow;
+
+        // 更新状态
         activeIndex = idx;
         activeAsc = asc;
-      })
-    );
+      });
+    });
   });
 </script>
+
 
 <!--<section class="section">
   <div class="container" style="margin-top: -150px; margin-bottom: -100px;">
